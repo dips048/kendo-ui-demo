@@ -1,0 +1,26 @@
+<h1>BASIC KENDO UI GRID</h1>
+<kendo-grid
+            [kendoGridBinding]="gridData"
+            [pageSize]="10"
+            [pageable]="true"
+            [sortable]="true"
+            [filterable]="true"
+            [groupable]="true"
+            [height]="420"
+            (edit)="editHandler($event)"
+            (cancel)="cancelHandler($event)"
+            (save)="saveHandler($event)"
+            (remove)="removeHandler($event)">
+            <kendo-grid-column field="CompanyName" [width]="140"></kendo-grid-column>
+            <kendo-grid-column field="ContactName" [width]="120"></kendo-grid-column>
+            <kendo-grid-column field="City" [width]="100"></kendo-grid-column>
+            <kendo-grid-column field="ContactTitle" [width]="130"></kendo-grid-column>
+            <kendo-grid-command-column title="command" [width]="220">
+              <ng-template kendoGridCellTemplate let-isNew="isNew">
+                  <button kendoGridEditCommand [primary]="true">Edit</button>
+                  <button kendoGridRemoveCommand>Remove</button>
+                  <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+                  <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+              </ng-template>
+          </kendo-grid-command-column>
+</kendo-grid>
